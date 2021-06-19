@@ -42,15 +42,15 @@ struct ContentView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack {
+                ProgressView(value: Double(currentQuestion),
+                             total: Double(questions.count))
+                    .padding()
+                
                 Text(questions[currentQuestion].title)
                     .padding()
                 
                 HStack{
                     VStack {
-                        ProgressView(value: Double(currentQuestion),
-                                     total: Double(questions.count))
-                            .padding()
-                        
                         Button{
                             didTapOption(optionNumber: 1)
                         }label: {
