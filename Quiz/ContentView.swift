@@ -9,25 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var questions = [Question(title: "What day is it?",
-                              option1: "Monday",
-                              option2: "Friday",
-                              option3: "Wednesday",
-                              option4: "Saturday",
+    var questions = [Question(title: "How many Nutellas does YJ eat a day?",
+                              option1: "One",
+                              option2: "Unlimited",
+                              option3: "Nine",
+                              option4: "Eight",
                               correctOption: 4),
                      
-                     Question(title: "What framework are we using?",
-                              option1: "UIKit",
-                              option2: "SwiftUI",
-                              option3: "React Native",
-                              option4: "Flutter",
+                     Question(title: "Does Jia Chen need sleep?",
+                              option1: "Maybe",
+                              option2: "Good question",
+                              option3: "No",
+                              option4: "Yes",
                               correctOption: 2),
                      
-                     Question(title: "Which company created Swift?",
-                              option1: "Apple 🍎",
-                              option2: "Orange 🍊",
-                              option3: "Google",
-                              option4: "Tinkercademy 🔜",
+                     Question(title: "Will we meet Tim Cook one day",
+                              option1: "In your dreams",
+                              option2: "YJ",
+                              option3: "Nutella",
+                              option4: "Soon 🔜",
                               correctOption: 1)]
     
     @State var currentQuestion = 0
