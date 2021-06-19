@@ -41,12 +41,19 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 ProgressView(value: Double(currentQuestion),
                              total: Double(questions.count))
                     .padding()
                 
                 Text(questions[currentQuestion].title)
+                    .fontWeight(.heavy)
+                    .font(.largeTitle)
+                    .foregroundColor(Color.pink)
+                    .underline(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, color: Color.white)
+                    .bold()
                     .padding()
                 
                 HStack{
@@ -57,13 +64,26 @@ struct ContentView: View {
                             Image(systemName: "triangle.fill")
                             Text(questions[currentQuestion].option1)
                         }
+                        .padding()
+                        .foregroundColor(Color.white)
+                        .background(Color.red)
+                        .cornerRadius(10)
+                        
+                        
+                        
                         Button{
                             didTapOption(optionNumber: 2)
                         }label: {
                             Image(systemName: "circle.fill")
                             Text(questions[currentQuestion].option2)                    }
                     }
+                    .foregroundColor(Color.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
                     .padding()
+                    
+                    
+                    
                     VStack{
                         Button{
                             didTapOption(optionNumber: 3)
@@ -71,6 +91,11 @@ struct ContentView: View {
                             Image(systemName: "diamond.fill")
                             Text(questions[currentQuestion].option3)
                         }
+                        .padding()
+                        .foregroundColor(Color.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                        
                         Button{
                             didTapOption(optionNumber: 4)
                         }label: {
@@ -78,6 +103,10 @@ struct ContentView: View {
                             Text(questions[currentQuestion].option4)
                         }
                     }
+                    .foregroundColor(Color.white)
+                    .background(Color.yellow)
+                    
+                    .cornerRadius(10)
                     .padding()
                 }
                 .padding()

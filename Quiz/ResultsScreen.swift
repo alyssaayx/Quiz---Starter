@@ -20,7 +20,20 @@ struct ResultsScreen: View {
                            .frame(width: 150, height: 150)
                         
             Text("You got")
+                .fontWeight(.heavy)
+                .font(.largeTitle)
+                .foregroundColor(Color.pink)
+                .underline(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, color: Color.blue)
+                .bold()
+            
             Text("\(score)/\(totalQuestions)")
+                .fontWeight(.heavy)
+                .font(.largeTitle)
+                .foregroundColor(Color.purple)
+                .underline(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, color: Color.purple)
+                .bold()
+                .padding()
+            
         }
     }
 }
