@@ -45,6 +45,10 @@ struct ContentView: View {
             
             HStack{
                 VStack {
+                    ProgressView(value: Double(currentQuestion),
+                                 total: Double(questions.count))
+                        .padding()
+                    
                     Button{
                         didTapOption(optionNumber: 1)
                     }label: {
