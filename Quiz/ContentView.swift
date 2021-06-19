@@ -24,10 +24,10 @@ struct ContentView: View {
                               correctOption: 2),
                      
                      Question(title: "Which company created Swift?",
-                              option1: "Apple",
-                              option2: "Orange",
+                              option1: "Apple 🍎",
+                              option2: "Orange 🍊",
                               option3: "Google",
-                              option4: "Tinkercademy",
+                              option4: "Tinkercademy 🔜",
                               correctOption: 1)]
     
     @State var currentQuestion = 0
@@ -39,62 +39,66 @@ struct ContentView: View {
     @State var isModalPresented = false
     
     var body: some View {
-        VStack {
-            Text(questions[currentQuestion].title)
-                .padding()
-            
-            HStack{
-                VStack {
-                    ProgressView(value: Double(currentQuestion),
-                                 total: Double(questions.count))
-                        .padding()
-                    
-                    Button{
-                        didTapOption(optionNumber: 1)
-                    }label: {
-                        Image(systemName: "triangle.fill")
-                        Text(questions[currentQuestion].option1)
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color.yellow, Color.orange]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            VStack {
+                Text(questions[currentQuestion].title)
+                    .padding()
+                
+                HStack{
+                    VStack {
+                        ProgressView(value: Double(currentQuestion),
+                                     total: Double(questions.count))
+                            .padding()
+                        
+                        Button{
+                            didTapOption(optionNumber: 1)
+                        }label: {
+                            Image(systemName: "triangle.fill")
+                            Text(questions[currentQuestion].option1)
+                        }
+                        Button{
+                            didTapOption(optionNumber: 2)
+                        }label: {
+                            Image(systemName: "circle.fill")
+                            Text(questions[currentQuestion].option2)                    }
                     }
-                    Button{
-                        didTapOption(optionNumber: 2)
-                    }label: {
-                        Image(systemName: "circle.fill")
-                        Text(questions[currentQuestion].option2)                    }
-                }
-                .padding()
-                VStack{
-                    Button{
-                        didTapOption(optionNumber: 3)
-                    }label: {
-                        Image(systemName: "diamond.fill")
-                        Text(questions[currentQuestion].option3)
+                    .padding()
+                    VStack{
+                        Button{
+                            didTapOption(optionNumber: 3)
+                        }label: {
+                            Image(systemName: "diamond.fill")
+                            Text(questions[currentQuestion].option3)
+                        }
+                        Button{
+                            didTapOption(optionNumber: 4)
+                        }label: {
+                            Image(systemName: "square.fill")
+                            Text(questions[currentQuestion].option4)
+                        }
                     }
-                    Button{
-                        didTapOption(optionNumber: 4)
-                    }label: {
-                        Image(systemName: "square.fill")
-                        Text(questions[currentQuestion].option4)
-                    }
+                    .padding()
                 }
                 .padding()
             }
-            .padding()
+            .alert(isPresented: $isAlertPresented) {
+                
+                Alert(title: Text(isCorrect ? "Correct" : "Wrong"),
+                      message: Text(isCorrect ? "Congrats, you are smart." : "This is outrageous, with such easy questions, how can you be getting this wrong?!"),
+                      dismissButton: .default(Text("OK")) {
+                        currentQuestion += 1
+                        
+                        if currentQuestion == questions.count {
+                            isModalPresented = true
+                            currentQuestion = 0
+                        }
+                      })
+            }.sheet(isPresented: $isModalPresented) {
+                ResultsScreen(score: correctAnswers, totalQuestions: questions.count)
+            }
         }
-        .alert(isPresented: $isAlertPresented) {
-            
-            Alert(title: Text(isCorrect ? "Correct" : "Wrong"),
-                  message: Text(isCorrect ? "Congrats, you are smart." : "This is outrageous, with such easy questions, how can you be getting this wrong?!"),
-                  dismissButton: .default(Text("OK")) {
-                    currentQuestion += 1
-                    
-                    if currentQuestion == questions.count {
-                        isModalPresented = true
-                        currentQuestion = 0
-                    }
-                  })
-        }.sheet(isPresented: $isModalPresented) {
-            ResultsScreen(score: correctAnswers, totalQuestions: questions.count)
-        }
+        
     }
     
     func didTapOption(optionNumber: Int) {
